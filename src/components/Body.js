@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Restaurant from "./Restaurant";
 import Shimmer from "./Shimmer";
+import { restaurants } from "../utils/mockData";
+import { Link } from "react-router-dom";
 
 const Body = () => {
     const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -26,7 +28,7 @@ const Body = () => {
     getLatestRestaurants = async () => {
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=20.9380661&lng=77.7509066&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const jsonData = await data.json();
-        return jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants ?? [];
+        return jsonData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants ?? jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants ?? restaurants;
     }
 
     searchRestaurant = async () => {
@@ -54,7 +56,11 @@ const Body = () => {
                     <button className="filter-btn" onClick={filterButtonHandler}>Top Rated Restaurant</button>
                 </div>
                 <div className="restaurant-container">
-                    {filteredRestaurant.map((res) => <Restaurant key={res.info.id} item={res} />)}
+                    {filteredRestaurant.map((res) =>
+                        <Link to={"/restaurant/" + res.info.id} key={res.info.id}>
+                            <Restaurant item={res} />
+                        </Link>
+                    )}
                 </div>
             </div>
         )
