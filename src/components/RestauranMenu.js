@@ -1,23 +1,11 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { MENU_URL } from "../utils/constants";
+import { userRestaurantMenu } from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = (props) => {
 
-    const [restaurant, setRestaurant] = useState();
-
     const { resId } = useParams();
 
-    useEffect(() => {
-        // fetch menu items
-        fetchMenu();
-    }, []);
-
-    const fetchMenu = async () => {
-        const data = await fetch(MENU_URL + resId);
-        const json = await data.json();
-        setRestaurant(json.data);
-    }
+    const restaurant = userRestaurantMenu(resId);
 
     if (!restaurant) {
         return <h1>Loading...</h1>
@@ -25,7 +13,7 @@ const RestaurantMenu = (props) => {
 
     const { name, cuisines } = restaurant?.cards?.[0]?.card?.card?.info;
 
-    const { itemCards } = restaurant?.cards?.[1]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[4]?.card?.card;
+    const { itemCards } = restaurant?.cards?.[1]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card;
 
     return (
         <div className="menu">

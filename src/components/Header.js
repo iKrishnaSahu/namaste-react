@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { useNavigate, Link } from "react-router-dom";
+import { useOnlineStatus } from "../utils/useOnlineStatus";
 
 const Header = () => {
 
     const [btnName, setButtonName] = useState('Login');
     const navigate = useNavigate();
+
+    const onlineStatus = useOnlineStatus();
 
     useEffect(() => {
         console.log('useEffect');
@@ -22,6 +25,7 @@ const Header = () => {
                 <li><a href="#" onClick={() => { navigate('/about-us') }}>About Us</a></li>
                 <li> <a href="#" onClick={() => { navigate('/contact-us') }}>Contact Us</a></li> */}
 
+                <li>Online status : {onlineStatus ? 'Green' : 'Red'}</li>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/about-us" >About Us</Link></li>
                 <li><Link to="/contact-us">Contact Us</Link></li>
