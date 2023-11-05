@@ -6,8 +6,9 @@ const Restaurant = (props) => {
     const { cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla } = item?.info;
 
     return (
-        <div className="restaurant">
+        <div className="m-4 p-4 w-[300px] hover:scale-95 hover:transition-all">
             <img
+                className="rounded-lg w-[100%] h-[250px]"
                 src={CDN_URL + cloudinaryImageId}>
             </img>
             <h3 className='name'>{name}</h3>
