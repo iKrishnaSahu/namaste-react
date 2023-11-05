@@ -20,4 +20,17 @@ const Restaurant = (props) => {
     )
 }
 
+// Higher order components
+
+export const withVegLabel = (RestaurantCard) => {
+    return (props) => {
+        return (
+            <div className="relative">
+                <label className="absolute bg-black text-white p-1 rounded-lg top-6 left-3 z-10 pointer-events-none">Pure Veg</label>
+                <RestaurantCard {...props} />
+            </div>
+        )
+    }
+}
+
 export default Restaurant;
