@@ -3,13 +3,16 @@ import { LOGO_URL } from "../utils/constants";
 import { useNavigate, Link } from "react-router-dom";
 import { useOnlineStatus } from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
 
     const [btnName, setButtonName] = useState('Login');
     const navigate = useNavigate();
-    const {loggedInUser} = useContext(UserContext);
+    const { loggedInUser } = useContext(UserContext);
     const onlineStatus = useOnlineStatus();
+
+    const cartItems = useSelector((store) => store.cart.items);
 
     // useEffect(() => {
     //     console.log('useEffect');
@@ -31,7 +34,9 @@ const Header = () => {
                 <li className="m-4"><Link to="/about-us" >About Us</Link></li>
                 <li className="m-4"><Link to="/contact-us">Contact Us</Link></li>
 
-                <li className="m-4">Cart</li>
+                <li className="m-4 font-bold">
+                    <Link to="/cart">Cart - {cartItems.length}</Link>
+                </li>
                 <button className="login-button p-2 h-12 rounded border-2 shadow-xl"
                     onClick={() => { setButtonName(btnName === 'Login' ? 'Logout' : 'Login') }}>
                     {btnName}
