@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 const Header = () => {
 
     const [btnName, setButtonName] = useState('Login');
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const { loggedInUser } = useContext(UserContext);
     const onlineStatus = useOnlineStatus();
 

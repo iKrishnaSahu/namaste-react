@@ -15,7 +15,7 @@ export const ItemList = (props) => {
     return (
         < div>
             {items.map((item) => (
-                <div key={item.card.info.id} className="flex items-center w-full p-4 pb-6 border-b border-b-gray-200">
+                <div data-testid="foodItems" key={item.card.info.id} className="flex items-center w-full p-4 pb-6 border-b border-b-gray-200">
                     <div className="w-[80%]">
                         <div className="font-semibold">{item.card.info.name} </div>
                         <div>₹ {item.card.info.price / 100}</div>

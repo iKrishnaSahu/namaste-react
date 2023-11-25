@@ -47,6 +47,7 @@ const Body = () => {
                     <input
                         className="border border-solid border-black"
                         type="text"
+                        data-testid="searchInput"
                         value={searchText}
                         onChange={(event) => setSearchText(event.target.value)}></input>
                     <button className="search-btn rounded-lg m-2 px-4 py-1 bg-green-100 shadow hover:bg-green-200"
@@ -68,9 +69,9 @@ const Body = () => {
                 </div>
                 <div className="flex flex-wrap justify-center">
                     {filteredRestaurant.map((res) =>
-                        <Link to={"/restaurant/" + res.info.id} key={res.info.id}>
+                        <Link to={"/restaurant/" + res.info.id} key={res.info.id} data-testid="resCard">
                             {res.info.veg ?
-                                (<VegRestaurant item={res} />) :
+                                (<VegRestaurant item={res}  />) :
                                 (<Restaurant item={res} />)}
                         </Link>
                     )}
